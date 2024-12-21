@@ -11,7 +11,9 @@ class FileKV implements KeyValueStorage {
 
     FileKV(String filepath, Map<String, String> kv) {
         this.filepath = filepath;
+        lock();
         this.cache.putAll(kv);
+        writeStorage(kv);
     }
 
     private void lock() {
