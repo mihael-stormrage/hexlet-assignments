@@ -5,9 +5,9 @@ import lombok.Getter;
 // BEGIN
 @Getter
 final class Segment {
-    final Point beginPoint;
-    final Point endPoint;
-    final Point midPoint;
+    private final Point beginPoint;
+    private final Point endPoint;
+    private final Point midPoint;
 
     Segment(Point begin, Point end) {
         beginPoint = begin;
