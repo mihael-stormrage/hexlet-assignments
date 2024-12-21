@@ -9,7 +9,7 @@ final class Segment {
     final Point endPoint;
     final Point midPoint;
 
-    public Segment(Point begin, Point end) {
+    Segment(Point begin, Point end) {
         beginPoint = begin;
         endPoint = end;
         midPoint = buildMidPoint();
