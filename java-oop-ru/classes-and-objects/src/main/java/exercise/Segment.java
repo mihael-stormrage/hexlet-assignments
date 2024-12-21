@@ -16,9 +16,13 @@ final class Segment {
     }
 
     private Point buildMidPoint() {
-        final int x = endPoint.getX() - beginPoint.getX();
-        final int y = endPoint.getY() - beginPoint.getY();
+        final int x = calculateMid(beginPoint.getX(), endPoint.getX());
+        final int y = calculateMid(beginPoint.getY(), endPoint.getY());
         return new Point(x, y);
+    }
+
+    private int calculateMid(int a, int b) {
+        return (a + b) / 2;
     }
 }
 // END
