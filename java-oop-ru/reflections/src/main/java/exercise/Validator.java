@@ -19,13 +19,12 @@ public class Validator {
         o -> f -> getFieldVal(f, o) == null;
 
     private static final Function<Object, Predicate<Field>> IS_LESS_THAN_MIN = o -> f -> {
-        Object val = getFieldVal(f, o);
+        String val = (String) getFieldVal(f, o);
         if (val == null) {
             return false;
         }
-        int strLength = getFieldVal(f, o).toString().length();
         int minLength = f.getAnnotation(MinLength.class).minLength();
-        return strLength < minLength;
+        return val.length() < minLength;
     };
 
     public static List<String> validate(Object o) {
@@ -78,6 +77,7 @@ public class Validator {
             .filter(f -> f.isAnnotationPresent(a))
             .peek(f -> f.setAccessible(true))
             .filter(p)
+            .peek(f -> f.setAccessible(false))
             .forEach(f -> {
                 A annotation = f.getAnnotation(a);
                 validationErrors.put(f.getName(), messageExtractor.apply(annotation));
