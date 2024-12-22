@@ -13,6 +13,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lombok.SneakyThrows;
 
 public class Validator {
     private static final Function<Object, Predicate<Field>> IS_NULL =
@@ -85,12 +86,9 @@ public class Validator {
         return validationErrors;
     }
 
+    @SneakyThrows
     private static Object getFieldVal(Field f, Object o) {
-        try {
-            return f.get(o);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
+        return f.get(o);
     }
 }
 // END
