@@ -25,12 +25,8 @@ public class ProductsController {
     @GetMapping
     public List<Product> index(
         @RequestParam(defaultValue = "0") Integer min,
-        @RequestParam(required = false) Integer max
+        @RequestParam(defaultValue = Integer.MAX_VALUE + "") Integer max
     ) {
-        Sort sort = Sort.by("price");
-        if (max == null) {
-            return productRepository.findByPriceGreaterThanEqual(min, sort);
-        }
         return productRepository.findByPriceBetween(min, max, Sort.by("price"));
     }
     // END
